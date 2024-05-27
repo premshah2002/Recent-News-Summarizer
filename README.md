@@ -40,7 +40,7 @@ Exe News Fetcher is a Streamlit-based web application that allows users to fetch
 
 ## Usage
 
-1. Open the web application in your browser.
+1. Open the web application (https://exe-news-summarizer.streamlit.app/) in your browser.
 2. Enter a topic in the input field and press Enter.
 3. View the top 5 news articles related to the entered topic.
 4. (Optional) Summarize the articles by uncommenting the summarization feature in the code.
