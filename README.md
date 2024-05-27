@@ -45,6 +45,11 @@ Exe News Fetcher is a Streamlit-based web application that allows users to fetch
 3. View the top 5 news articles related to the entered topic.
 4. (Optional) Summarize the articles by uncommenting the summarization feature in the code.
 
+## Demo
+![image](https://github.com/premshah2002/Recent-News-Summarizer/assets/136327292/f111ff71-4b3a-49bc-87da-6f9f1815c8be)
+![image](https://github.com/premshah2002/Recent-News-Summarizer/assets/136327292/cec86799-ce68-433a-997f-0db5b9cb8764)
+
+
 ## Code Structure
 
 - **app.py**: Main file containing the Streamlit application code.
