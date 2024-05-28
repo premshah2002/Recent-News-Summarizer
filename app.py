@@ -8,7 +8,7 @@ st.set_page_config(layout="wide")
 st.subheader("Hi, I am Exe. I can fetch and summarize latest news on topic of your choice 📰😎")
 
 SYSTEM_MESSAGE = "You are a helpful assistant that generates search queries based on user questions. Only generate one search query."
-USER_QUESTION = st.text_input("Enter topic")
+USER_QUESTION = st.text_input("Enter topic", placeholder="What's the recent news in physics this week?")
 if USER_QUESTION:
     exa = Exa(st.secrets['EXA_API_KEY'])
     client = Together(api_key=st.secrets['TOGETHER_API_KEY'])
