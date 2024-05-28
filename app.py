@@ -8,7 +8,7 @@ st.set_page_config(layout="wide")
 st.subheader("Hi, I am Exe. I can fetch and summarize latest news on topic of your choice 📰😎")
 
 SYSTEM_MESSAGE = "You are a helpful assistant that generates search queries based on user questions. Only generate one search query."
-USER_QUESTION = st.text_input("Enter topic")
+USER_QUESTION = st.text_input("Enter topic", placeholder="What's the recent news in physics this week?")
 
 # Initialize session state
 if 'summarize' not in st.session_state:
