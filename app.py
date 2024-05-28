@@ -8,7 +8,14 @@ st.set_page_config(layout="wide")
 st.subheader("Hi, I am Exe. I can fetch and summarize latest news on topic of your choice 📰😎")
 
 SYSTEM_MESSAGE = "You are a helpful assistant that generates search queries based on user questions. Only generate one search query."
-USER_QUESTION = st.text_input("Enter topic", placeholder="What's the recent news in physics this week?")
+USER_QUESTION = st.text_input("Enter topic")
+
+# Initialize session state
+if 'summarize' not in st.session_state:
+    st.session_state.summarize = [False] * 5
+if 'summaries' not in st.session_state:
+    st.session_state.summaries = [""] * 5
+
 if USER_QUESTION:
     exa = Exa(st.secrets['EXA_API_KEY'])
     client = Together(api_key=st.secrets['TOGETHER_API_KEY'])
@@ -38,9 +45,14 @@ if USER_QUESTION:
             <p>Source: {result.id}</p>
         </div>
         """, unsafe_allow_html=True)
-        with st.popover(f"Summarize Article {i+1}"):
-            summarize = st.button(f"Summarize {result.title}")
-            if summarize:
+        
+        # Check if the button is clicked
+        if st.button(f"Summarize Article {i+1}"):
+            st.session_state.summarize[i] = True
+        
+        # If the button was clicked, generate the summary
+        if st.session_state.summarize[i]:
+            if not st.session_state.summaries[i]:
                 SYSTEM_MESSAGE_2 = "You are a helpful assistant that briefly summarizes the content of a webpage. Summarize the users input."
                 response = client.chat.completions.create(
                     model="mistralai/Mixtral-8x7B-Instruct-v0.1",
@@ -49,5 +61,6 @@ if USER_QUESTION:
                         {"role": "user", "content": result.text},
                     ],
                 )
-                summary = response.choices[0].message.content
-                st.write(summary)
+                st.session_state.summaries[i] = response.choices[0].message.content
+            
+            st.write(st.session_state.summaries[i])
